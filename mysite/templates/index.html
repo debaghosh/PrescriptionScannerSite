@@ -1,32 +1,53 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
-    <link rel = "stylesheet" type = "text/css" href = "{%static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{%static 'css/style.css' %}">
 </head>
+
 <body>
     <header>
         <div class="main">
             <div class="logo">
                 <img src="{%static 'pto/2.jpg' %}">
             </div>
-            <ul>
-                <li class="active"><a href="http://127.0.0.1:8000">Home</a></li>
-                <li><a href="/services/">Services</a></li>
-                <li><a href="/gallery/">Gallery</a></li>
-                <li><a href="/about/">About</a></li>
-                <li><a href="/contact/">Contact</a></li>
-            </ul>
+            <div>
+                <ul>
+                    <li class="active"><a href="http://127.0.0.1:8000">Home</a></li>
+                    <li><a href="/services/">Services</a></li>
+                    <li><a href="/gallery/">Gallery</a></li>
+                    <li><a href="/about/">About</a></li>
+                    <li><a href="/contact/">Contact</a></li>
+                </ul>
+            </div>
             <div class="title">
                 <h1><b>UPLOAD AND SCAN</b></h1>
             </div>
             <div class="button">
-                <a href="/login/">SIGN IN</a>
-                <a href="/signup/">SIGN UP</a>
+                <ul>
+                    <li class="login"><a href="/login/" class="option">SIGN IN</a>
+                        <div class="submenu1">
+                            <ul>
+                                <li><a href="#">Doctor</a></li>
+                                <li><a href="#">User</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="signup"><a href="/signup/" class="option">SIGN UP</a>
+                        <div class="submenu2">
+                            <ul>
+                                <li><a href="#">Doctor</a></li>
+                                <li><a href="#">User</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
     </header>
 </body>
+
 </html>
