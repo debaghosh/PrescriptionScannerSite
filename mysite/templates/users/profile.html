@@ -1,0 +1,46 @@
+{% extends 'index.html' %}
+   {% load crispy_forms_tags %}
+   
+   
+   
+   {% block content %}
+
+      {% if messages %}
+        {% for message in messages %}
+
+        <div class="alert alert-dark" role="alert">
+            {{message}}
+        </div>
+          
+
+        {% endfor %}
+       {% endif %}
+   
+  
+    
+       <div class="container rounded border border-primary" style="margin-top:30px; margin-bottom: 30px; padding-bottom: 30px; ">
+           <div class="card" style="width: 18rem; margin-top: 30px; ">
+                <img src="{{ user.profile.image.url }}" class="card-img-top" alt="profilepic">
+                <div class="card-body">
+                  <h5 class="card-title"> Profile </h5>
+                  <p class="card-text">Information</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><b>Username: </b> {{user.username}}</li>
+                  <li class="list-group-item"><b>Email:</b> {{user.email}}</li>
+                  <li class="list-group-item"><b>Client Category: </b> Doctor</li>
+                </ul>
+              </div>
+              <br>
+              <form method="POST" enctype="multipart/form-data" >
+                <legend class="border-bottom mb-4">Profile Info</legend>
+                  {% csrf_token %}
+                  {{ u_form|crispy }}
+                  {{ p_form|crispy }}
+                  <button type="submit">Update</button>
+              </form>
+
+            </div>
+
+
+  {% endblock content %}

@@ -14,16 +14,41 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from . import views
+from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
+from users import views as user_views
+from mysite import views
+from django.contrib.auth import views as auth_views
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.index,name = 'index'),
+    path('',views.index, name = 'index'),
     path('about/',views.about,name = 'about'),
-    path('gallery/',views.gallery,name = 'gallery'),
     path('services/',views.services,name = 'services'),
     path('contact/',views.contact,name = 'contact'),
-    path('login/',views.login,name = 'login'),
-    path('signup/',views.signup,name = 'signup'),
+    path('register/',user_views.register, name='register'),
+    path('login/',auth_views.LoginView.as_view(template_name ='users/login.html'), name='login'),
+    path('logout/',auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
+    path('profile/',user_views.profile, name='profile'),
+    
+
 ]
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+
+
+
+
+from django.conf import settings
+if settings.DEBUG:
+    from django.conf.urls.static import static
+    from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+    # Serve static and media files from development server
+    urlpatterns += staticfiles_urlpatterns()
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
