@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class='container'>
+<article class='media content-section'>
+        <div class='media-body'>
+            <div class='article-metadata'>
+                <p><bold>USERNAME: </bold>{{ object.user.username }}</p>
+                <small>DATE UPLOADED: {{ object.date|date:"F d, Y" }}</small>
+                <div class="row">                                     
+                        <div class="col-sm-6">                 
+                            <img class="img-responsive" src="{{ object.image.url }}" />
+                            <h5>Uploaded Prescription</h5>
+                        </div>                  
+                        <div class="col-sm-6">
+                            <img class="img-responsive" src="{{ object.result_image.url }}" />
+                            <h5>Scanned Prescription</h5>
+                        </div>                  
+                </div>
+                <div class='article-content'>
+                        <h5>MEDICAL PROBLEM: {{ object.medical_problem }}</h5>
+                        <h5>DOCTOR: {{object.doctor}}</h5>
+                </div>
+    
+                
+            </div>
+        </div>
+    </article>
+    <!--<button type="submit"><a href="{% url 'home' %}">Your Previous Uploads</a></button>-->
+</div>
+
+
+{% endblock %}

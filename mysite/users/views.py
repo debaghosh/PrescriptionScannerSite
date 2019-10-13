@@ -35,7 +35,12 @@ def profile(request):
             return redirect('profile')
 
 
+
+        
+
+
     else:
+        messages.info(request, 'Please update your profile before proceeding further')
         u_form = UserUpdateForm(instance= request.user)
         p_form = ProfileUpdateForm(instance= request.user.profile)
 
@@ -45,3 +50,10 @@ def profile(request):
         'p_form':p_form,
     }
     return render(request, 'users/profile.html', context)
+
+
+def patient_upload(request):
+    return render(request, 'users/patient_upload.html')
+
+def doctor_upload(request):
+    return render(request, 'users/doctor_upload.html')

@@ -1,0 +1,39 @@
+{% extends 'index.html' %}
+
+
+{% block content %}
+<div class="container" >
+    {% for post in prescription %}
+    <article class='media content-section'>
+            <div class='media-body'>
+                <div class='article-metadata'>
+                    
+                    <a href="{% url 'profile' %}"><h4>Patient Name: {{ post.user.first_name }} {{ post.user.last_name }}</h4></a>
+                    <small>Date Uploaded: {{ post.date|date:"F d, Y" }}</small>
+
+<!--                      <div class="row">                                     
+                            <div class="col-sm-6">                 
+                                <img class="img-responsive" src="{{ post.image.url }}" />
+                            </div>                  
+                            <div class="col-sm-6">
+                                <img class="img-responsive" src="{{ post.result_image.url }}" />
+                            </div>                  
+                    </div> -->
+
+                    <div class='article-content'>
+                            <h4>Medical Problem: {{ post.medical_problem }}</h4>
+                            <small><a href="{% url 'prescription_detail' post.id %}" >Info</a></small>
+                    </div>
+                    
+        
+                    
+                </div>
+            </div>
+        </article>
+        <br style="margin-bottom: 30px">
+        <hr style="height:30px">
+    {% endfor %}
+</div>
+
+{% endblock %}
+

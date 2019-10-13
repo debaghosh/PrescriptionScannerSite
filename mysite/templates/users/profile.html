@@ -27,10 +27,31 @@
                 </div>
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item"><b>Username: </b> {{user.username}}</li>
+                  <li class="list-group-item"><b>Full Name:</b> {{user.first_name}} {{user.last_name}}</li>
                   <li class="list-group-item"><b>Email:</b> {{user.email}}</li>
-                  <li class="list-group-item"><b>Client Category: </b> Doctor</li>
+                  {% if p_form.instance.user_type %}
+                  <li class="list-group-item"><b>UserType: </b> {{user.profile.user_type}}</li>
+                  {% endif %}
+
+                  {% if p_form.instance.user_gender %}
+                  <li class="list-group-item"><b>Gender:</b> {{user.profile.user_gender}}</li>
+                  {% endif %}
+
                 </ul>
               </div>
+              <br>
+
+              {% if 'Patient' in user.profile.user_type %}
+              <bold>Welcome Patient {{user.username}}! Please Upload the image to be scanned here!</bold>
+              <button type="submit"><a href="patient_upload/prescription/new/"> Upload image </a></button>
+              {% endif %}
+
+              {% if 'Doctor' in user.profile.user_type %}
+              <bold>Welcome Doctor {{user.username}}! Please Upload the image to be scanned here! </bold>
+              <button type="submit"><a href="doctor_upload/"> Upload Image </a></button>
+              {% endif %}
+              
+              
               <br>
               <form method="POST" enctype="multipart/form-data" >
                 <legend class="border-bottom mb-4">Profile Info</legend>
@@ -39,7 +60,9 @@
                   {{ p_form|crispy }}
                   <button type="submit">Update</button>
               </form>
+              
 
+              
             </div>
 
 
